@@ -1,0 +1,86 @@
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #eefffe;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+}
+svg{
+    fill: #033A6B;
+}
+
+input, button {
+    padding: 10px;
+    margin-top: 5px;
+}
+.navbar{
+    background-color: #eefffe !important;
+    border-bottom: 8px solid #033A6B;
+}
+.overview-img img{
+    display: block;
+    width: 100%;
+    margin-left: 3rem;
+}
+.overview-box {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 33%;
+    color: #033A6B;
+    position: relative;
+    
+}
+.overview-box > svg {
+    position: relative;
+}
+.line-temp{
+    top: 410px;
+}   
+.overview-box .icon{
+    width: 50px;
+    height: 60px;
+    left: -5px;
+    top: -20px;
+}
+#video-feed > .container{
+    padding: 3rem;
+}
+.video-stream{
+    position: relative;
+}
+
+.video-stream > img{
+    border: 5px solid #033A6B;
+    border-top: 50px solid #033A6B;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    width: 100%;
+    border-radius: 8px;
+    
+}
+.video-stream > svg{
+    position: absolute;
+    width: 50px;
+    height: 60px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: -4px;
+    fill: #eefffe;
+}
+
