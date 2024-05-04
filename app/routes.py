@@ -10,12 +10,12 @@ def index():
     db = get_db_connection()
     cursor = db.cursor()
     
-    # Fetch settings
+    # načtení nastevní větráčku
     cursor.execute("SELECT frequency, period FROM FanSettings ORDER BY id DESC LIMIT 1")
     settings = cursor.fetchone()
     frequency, period = settings if settings else (1, 'hourly')
     
-    # Fetch sensor readings
+    # načtení dat ze senzorů
     twenty_four_hours_ago = datetime.now() - timedelta(hours=24)
     cursor.execute("SELECT temperature, humidity, timestamp FROM sensor_readings WHERE timestamp >= %s", (twenty_four_hours_ago,))
     readings = cursor.fetchall()
@@ -23,7 +23,7 @@ def index():
     cursor.close()
     db.close()
 
-    # Prepare data for the template
+    # úprava dat pro chart.js
     temperatures = [reading[0] for reading in readings]
     humidities = [reading[1] for reading in readings]
     timestamps = [reading[2].strftime('%Y-%m-%d %H:%M:%S') for reading in readings]
@@ -35,7 +35,7 @@ def index():
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/set_schedule', methods=['POST'])
+@app.route('/set_schedule', methods=['POST']) #route pro nastavení frekvence větrání
 def set_schedule():
     data = request.get_json()
     frequency = int(data['frequency'])
@@ -48,7 +48,7 @@ def set_schedule():
     update_scheduler(frequency, period)
     return jsonify({'message': 'Schedule updated successfully'})
 
-@app.route('/data')
+@app.route('/data') # get route pro ziskani dat ze senzoru teplota/vlhkost
 def data():
     db = get_db_connection()
     from Adafruit_DHT import read_retry, DHT22
