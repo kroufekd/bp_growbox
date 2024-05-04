@@ -11,7 +11,7 @@ def index():
     cursor = db.cursor()
     
     # načtení nastevní větráčku
-    cursor.execute("SELECT frequency, period FROM FanSettings ORDER BY id DESC LIMIT 1")
+    cursor.execute("SELECT frequency, period FROM fan_settings ORDER BY id DESC LIMIT 1")
     settings = cursor.fetchone()
     frequency, period = settings if settings else (1, 'hourly')
     
@@ -42,7 +42,7 @@ def set_schedule():
     period = data['period']
     db = get_db_connection()
     with db.cursor() as cursor:
-        cursor.execute("INSERT INTO FanSettings (frequency, period) VALUES (%s, %s)", (frequency, period))
+        cursor.execute("INSERT INTO fan_settings (frequency, period) VALUES (%s, %s)", (frequency, period))
         db.commit()
     db.close()
     update_scheduler(frequency, period)
