@@ -45,7 +45,7 @@ def update_scheduler_from_db():
     from .database.db import get_db_connection
     db = get_db_connection()
     with db.cursor() as cursor:
-        cursor.execute("SELECT frequency, period FROM FanSettings ORDER BY id DESC LIMIT 1")
+        cursor.execute("SELECT frequency, period FROM fan_settings ORDER BY id DESC LIMIT 1")
         settings = cursor.fetchone()
 
     if settings:
